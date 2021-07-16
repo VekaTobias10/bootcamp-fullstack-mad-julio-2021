@@ -127,14 +127,14 @@ let arrPlusString = ['uno', 'dos', 'tres', 'cuatro','cinco', 'seis', 'siete', 'o
 
 let arrBidi = [['a','b'], ['c','d']]
 
-const fromBidiToDim = (value, index, arr) => arr[index].flat() === value;
+const fromBidiToDim = (value, index, arr) => arr === arr.index.flat();
 
 fromBidiToDim();
 
 console.log(arrBidi);
 
 // 8- (Hard)Cuando vamos a urgencias, nos atienden en recepción y nos asignan un orden para ser atendido.
-//   Este orden va en funcion de dos factores:
+//   Este orden va en funcion de dos factores: se hace con function splice, findindex,
 //      1.- Orden de llegada a urgencias
 //      2.- Criticidad de la urgencia
 //   Construir una función "siguientePaciente" que dados dos arrays de la misma longitud
@@ -146,4 +146,5 @@ console.log(arrBidi);
 //   La función "siguientePaciente" debe eliminar y devolver el nombre del siguiente paciente
 //   que hay que atender en urgencias.
 
-
+const patientsNames =['Veka','Virginia','Alex'];
+const patientsSeverity =['Baja', 'Media', 'urgente' ];
