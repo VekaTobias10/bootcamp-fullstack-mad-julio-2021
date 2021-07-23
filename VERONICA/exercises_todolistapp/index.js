@@ -10,12 +10,25 @@
 // Sacar Que deberia hacer en el HTML para ese paso, que debería hacer en el CSS
 // Que debería hacer en el JS para ese paso
 /**
+ * 
+ TODO LIST APP
+ * Queremos construir una aplicacion web para poder gestionar una lista de tareas. La aplicación tendrá las siguientes funcionalidades:
+- Me debe permitir añadir nuevas tareas a la lista
+- Me debe permitir marcar una tarea como hecha (sin borrarla de la lista)
+- Me debe permitir filtrar mis tareas por todas, sin hacer y completadas
+- Me debe mantener el estado de mi lista de tareas aun cuando apague el ordenador y lo vuelva a encender
+El diseño es libre. Si no se os ocurre nada, podéis coger alguna imagen de ejemplo de internet.
+ * 
+
+
+
+
  * 1- crear una lista vacia.
  *    - HTML: crear un ul sin li
  *      <ul></ul>
  *    - CSS: No tengo suficiente informacion, me falta el diseño
  *    - JS: Crear una variable con un array vacio 
- *      const ourList = [myInput];
+ *      const ourList = [ ];
  * 
  * 2- crear input vacio dentro del HTML --- para que el usuario pueda agregar su info
  *      - HTML: crear un input usando la etiqueta <input type="text" id=input__Id> 
@@ -56,9 +69,63 @@
  *           2. se hace el appenchild con el body
  *          document.body.appenchild(LIST__ITEM);
  * 
- * 
+ * tarea para mañana:
+18:10
+añadir en cada linea de codigo que hemos hecho hoy que significa la linea que hicimos
+18:10
+y unificar luego
+18:10
+tarea 2
+hacer la funcionalidad que marque la tarea como completada
+18:11
+en un comentario, que haria (como haria para eliminar el elemento de la lista) escrito en castellano (SIN CODIGO)
+lo mas detallado posible (editado) 
  * 
  *   
+ * 
+Que necesito? 
+1. crear otro evento (deleteValue) de tipo click al boton donde quiero hacer click para eliminar el elemento
+          
+2. crear un boton en el js que aparezca al lado del li haciendo un appenchild con el ul al que le daremos click para eliminar el valor
+    2.1 De momento no importa su posición en el DOM ya que eso se estiliza con el css
+     2.2 Debe estar incluido en el primer evento que hicimos y que aparezca al mismo tiempo que aparece el value del input
+     2.3 darle una clase a ese boton
+
+Que necesito para eliminarlo?
+
+2. necesito encontrar un metodo de array para eliminar el valor de un array puesto que ourList es un array
+     2.2 Para remover un  del array original puede ser el array.splice 
+     array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+     Se me ocurre algo así como hicimos con el push
+     ourList.splice(ourInput.value)
+
+3. 
+
  */
 
- const ourList = [myInput];
+
+
+const ourlist = []; // array vacío de mi lista en donde quiero que se almacen los datos que vaya registrando el usuario o yo misma
+
+const ourInput = document.getElementById("id_input"); // obtiene el id del input
+const ourButton = document.getElementById("id_button"); // obtiene el id del boton
+ourButton.addEventListener('click', function () { // creamos el evento addEventListener con el tipo de evento click y la funcion que quiere que haga cuando escuche el click
+  //esto se ejecuta cada vez que el usuario hace click en el boton
+  ourlist.push(ourInput.value); // para incluir el valor del input al array debemos utilizar el método push
+  const li = document.createElement('li'); // se crea la variable de la lista 
+  li.textContent= ourInput.value; // a la etiqueta li se le agrega el valor del input
+  const list = document.getElementById("id_list"); // se crea la variable ul llamandola por su id
+  list.appendChild(li); // el ul incluye al li como su hijo para que los value del input se agreguen 
+  ourInput.value= ""; // el value desaparece del input después de que se agrega en la lista
+
+
+//Este es mi aporte para el boton que sale al lado del valor del input
+const BTN_DELETE = document.createElement('button'); // creando el boton dinámico que aparecerá junto con el value del input
+BTN_DELETE.classList.add('btn-delete');// creando una clase para el boton de eliminar
+BTN_DELETE.textContent = 'X'; // creando el texto del botón
+list.appendChild(BTN_DELETE);
+
+});
+
+
+
