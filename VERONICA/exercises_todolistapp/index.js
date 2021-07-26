@@ -111,7 +111,7 @@ Que necesito para eliminarlo?
 3- Listar los pasos de la funcionalidad filtrar
       - el input checkbox tiene una propiedad checked que es un booleano true y false
       - cuando le dé check al input task completed debo filtrar las tareas que tenga la propiedad checked === true.
-      - la 
+      
 4- Implementéis filtrar
 
 
