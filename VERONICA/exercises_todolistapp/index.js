@@ -99,33 +99,85 @@ Que necesito para eliminarlo?
      Se me ocurre algo así como hicimos con el push
      ourList.splice(ourInput.value)
 
-3. 
+    
+1- Listar los pasos de la funcionalidad eliminar tarea
+
+    - crear un boton en la funcion mostrar tarea, darle su clase y hacerle un appenchild que aparezca al mismo tiempo que la tarea y el ckeckbox 
+
+    - crear un addEventListener donde utilice el splice para remover de la lista y el remove en el html
+
+
+2- Implementéis los pasos anteriores
+3- Listar los pasos de la funcionalidad filtrar
+      - el input checkbox tiene una propiedad checked que es un booleano true y false
+      - cuando le dé check al input task completed debo filtrar las tareas que tenga la propiedad checked === true.
+      - la 
+4- Implementéis filtrar
+
 
  */
 
 
 
-const ourlist = []; // array vacío de mi lista en donde quiero que se almacen los datos que vaya registrando el usuario o yo misma
+const ourlist = [];// creo un array vacío
 
-const ourInput = document.getElementById("id_input"); // obtiene el id del input
-const ourButton = document.getElementById("id_button"); // obtiene el id del boton
-ourButton.addEventListener('click', function () { // creamos el evento addEventListener con el tipo de evento click y la funcion que quiere que haga cuando escuche el click
+
+// PARA AÑADIR TAREAS
+const ourInput = document.getElementById("id_input");// obtengo del html a traves del id el elemento input
+const ourButton = document.getElementById("id_button");// obtengo del html a traves del id el elemento boton 
+const BTN_DELETE =document.getElementById('btn_delete'); // obtengo el id del btn eliminar
+const TASK_COMPLETED = document.getElementById('task_completed'); // obtengo del html a traves del id el input checkbox
+
+
+
+
+function mostrarTareaEnHTML(tarea,index) {
+  const checkboxInput=document.createElement('input');//creamos un elemento input
+  checkboxInput.type="checkbox";
+  checkboxInput.id= "id_checkbox";
+  checkboxInput.name= 'checkbox_name';
+  
+  
+  const labelcheck= document.createElement('label');
+  labelcheck.htmlFor= "id_checkbox";
+  labelcheck.textContent = tarea; // le asignamos el valor de nuestro input a el li
+  
+  const li = document.createElement('li'); //creamos un elemento li 
+
+  // AGREGUÉ EL BOTON PARA ELIMINAR LA TAREA
+  const BTN_DELETE = document.createElement('button'); //creando boton para eliminar la task 
+  BTN_DELETE.id ='btn_delete'; //la clase para el boton de eliminar task
+  BTN_DELETE.textContent ='x'; // el texto del boton
+
+  li.setAttribute('data-position',index);
+  li.appendChild(checkboxInput);
+  li.appendChild(labelcheck);
+  li.appendChild(BTN_DELETE);
+
+  const list = document.getElementById("id_list");// obtengo del html a traves del id el elemento ul (lista)
+  list.appendChild(li);// le añado el elemento li al ul
+
+}
+
+ourButton.addEventListener('click', function () { // escuchamos el evento que va realizar el usuario cuando haga click    sobre el boton
+
   //esto se ejecuta cada vez que el usuario hace click en el boton
-  ourlist.push(ourInput.value); // para incluir el valor del input al array debemos utilizar el método push
-  const li = document.createElement('li'); // se crea la variable de la lista 
-  li.textContent= ourInput.value; // a la etiqueta li se le agrega el valor del input
-  const list = document.getElementById("id_list"); // se crea la variable ul llamandola por su id
-  list.appendChild(li); // el ul incluye al li como su hijo para que los value del input se agreguen 
-  ourInput.value= ""; // el value desaparece del input después de que se agrega en la lista
-
-
-//Este es mi aporte para el boton que sale al lado del valor del input
-const BTN_DELETE = document.createElement('button'); // creando el boton dinámico que aparecerá junto con el value del input
-BTN_DELETE.classList.add('btn-delete');// creando una clase para el boton de eliminar
-BTN_DELETE.textContent = 'X'; // creando el texto del botón
-list.appendChild(BTN_DELETE);
+  let newOurlist = ourlist.push(ourInput.value);// agregamos a nuestra lista el valor del input
+  mostrarTareaEnHTML(ourInput.value,newOurlist-1);//llamamos a la función que pinta el valor en html
+  ourInput.value = "";// le asigno un string vacío a el valor del input
 
 });
 
+const INPUT_CHECKED = document.getElementById('id_checkbox'); // llamo el input checkbox de la tarea
 
+TASK_COMPLETED.addEventListener('click', tareas_completadas);
+  
+function tareas_completadas (){
+   const myCheckbox = document.getElementById('id_checkbox');
 
+   if (myCheckbox.checked === true){
+    document.getElementsByTagName('li'); 
+   }
+}
+
+   ourlist.filter(tareas_completadas);

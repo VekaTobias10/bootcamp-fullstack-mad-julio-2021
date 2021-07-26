@@ -1,0 +1,8 @@
+#id_checkbox:checked + label  {
+    text-decoration: line-through;
+}
+
+#id_list {
+    list-style-type: none;
+
+}
